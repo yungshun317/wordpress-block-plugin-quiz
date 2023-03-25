@@ -3,9 +3,19 @@ wp.blocks.registerBlockType("plugin/quiz", {
     icon: "smiley",
     category: "common",
     edit: function() {
-        return wp.element.createElement("h3", null, "Hello, this is from the admin editor screen.")
+        return (
+            <div>
+                <p>Hello, this is a paragraph.</p>
+                <h4>Hi there.</h4>
+            </div>
+        )
     },
     save: function() {
-        return wp.element.createElement("h1", null, "This is the frontend.")
+        return (
+            <>
+                <h3>H3 on the frontend.</h3>
+                <h5>H3 on the frontend.</h5>
+            </>
+        )
     }
 })
