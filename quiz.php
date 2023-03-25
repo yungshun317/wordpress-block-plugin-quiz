@@ -23,7 +23,7 @@ if ( ! class_exists( 'Quiz' ) ) {
         }
 
         function admin_assets() {
-            wp_enqueue_script( 'new_block_type', plugin_dir_url( __FILE__ ) . 'test.js', array( 'wp-blocks', 'wp-element' ) );
+            wp_enqueue_script( 'new_block_type', plugin_dir_url(__FILE__) . 'build/index.js', array( 'wp-blocks', 'wp-element' ) );
         }
     }
 
