@@ -23,8 +23,11 @@ wp.blocks.registerBlockType("plugin/quiz", {
         )
     },
     save: function(props) {
+        return null
+        /*
         return (
             <p>Today the sky is <span className="skyColor">{props.attributes.skyColor}</span> and the grass is <span className="grassColor">{props.attributes.grassColor}</span>.</p>
         )
+         */
     }
 })
