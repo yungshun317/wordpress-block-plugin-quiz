@@ -23,9 +23,11 @@ if ( ! class_exists( 'Quiz' ) ) {
         }
 
         function admin_assets() {
-            wp_enqueue_script( 'new_block_type', plugin_dir_url(__FILE__) . 'build/index.js', array( 'wp-blocks', 'wp-element' ) );
+            wp_enqueue_style( 'quiz_edit_style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
+            wp_enqueue_script( 'new_block_type', plugin_dir_url(__FILE__) . 'build/index.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ) );
             register_block_type( 'plugin/quiz', array(
                 'editor_script' => 'new_block_type',
+                'editor_style' => 'quiz_edit_css',
                 'render_callback' => array( $this, 'render_html' )
             ));
         }
