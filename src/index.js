@@ -16,8 +16,8 @@ wp.blocks.registerBlockType("plugin/quiz", {
 })
 
 function EditComponent(props) {
-    function updateQuestion(event) {
-        props.setAttributes({ question: event.target.value })
+    function updateQuestion(value) {
+        props.setAttributes({ question: value })
     }
 
     function deleteAnswer(indexToDelete) {
@@ -38,7 +38,7 @@ function EditComponent(props) {
                             <TextControl value={answer} onChange={ newValue => {
                                 const newAnswers = props.attributes.answers.concat([])
                                 newAnswers[index] = newValue
-                                props.setAttributes({answers: newAnswers})
+                                props.setAttributes({ answers: newAnswers })
                             }} />
                         </FlexBlock>
                         <FlexItem>
@@ -53,7 +53,7 @@ function EditComponent(props) {
                 )
             })}
             <Button isPrimary onClick={() => {
-                props.setAttributes({ answers: props.setAttributes.answers.concat([""])})
+                props.setAttributes({ answers: props.setAttributes.answers.concat([""]) })
             }}>Add another answer</Button>
         </div>
     )
