@@ -47,7 +47,7 @@ function EditComponent(props) {
         })
         props.setAttributes({ answers: newAnswers })
 
-        if ( indexToDelete == props.attributes.correctAnswer ) {
+        if (indexToDelete == props.attributes.correctAnswer) {
             props.setAttributes({ correctAnswer: undefined })
         }
     }
@@ -82,7 +82,7 @@ function EditComponent(props) {
                 )
             })}
             <Button isPrimary onClick={() => {
-                props.setAttributes({ answers: props.setAttributes.answers.concat([""]) })
+                props.setAttributes({ answers: props.attributes.answers.concat([""]) })
             }}>Add another answer</Button>
         </div>
     )
