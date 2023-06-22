@@ -23,18 +23,23 @@ if ( ! class_exists( 'Quiz' ) ) {
         }
 
         function admin_assets() {
-            wp_enqueue_style( 'quiz_edit_style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
-            wp_enqueue_script( 'new_block_type', plugin_dir_url(__FILE__) . 'build/index.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ) );
+            wp_register_style( 'quiz_edit_style', plugin_dir_url( __FILE__ ) . 'build/index.css' );
+            wp_register_script( 'new_block_type', plugin_dir_url( __FILE__ ) . 'build/index.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ) );
             register_block_type( 'plugin/quiz', array(
                 'editor_script' => 'new_block_type',
-                'editor_style' => 'quiz_edit_css',
+                'editor_style' => 'quiz_edit_style',
                 'render_callback' => array( $this, 'render_html' )
             ));
         }
 
         function render_html( $attributes ) {
+            if ( ! is_admin() ) {
+                wp_enqueue_script( 'quiz_frontend', plugin_dir_url( __FILE__ ) . 'build/frontend.js', array( 'wp-element' ) );
+                wp_enqueue_style( 'quiz_frontend_style', plugin_dir_url( __FILE__ ) . 'build/frontend.css' );
+            }
+
             ob_start(); ?>
-            <h3>Today the sky is <?php echo esc_html( $attributes['skyColor'] ) ?> and the grass is <?php echo esc_html( $attributes['grassColor'] ) ?>!</h3>
+            <div class="quiz-answer-update"><pre style="display: none;"><?php echo wp_json_encode( $attributes ) ?></pre></div>
             <?php return ob_get_clean();
         }
     }
